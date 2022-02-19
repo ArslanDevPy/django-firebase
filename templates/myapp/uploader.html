@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block title %}
+Image Uploader
+{% endblock %}
+{% block css %}
+    <style>
+    .setting-m{
+        margin-top: 90px;
+        margin-bottom: 90px;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+        <div class="col-md-8 offset-md-2 setting-m">
+        <div class="border p-5 shadow rounded">
+            <h2 class="text-center pb-3 ">Image Uploader</h2>
+            <form method="POST" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="col text-center pt-2">
+                    <input type="submit" value="Image Upload" class="px-5 btn btn-primary font-weight-bold">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

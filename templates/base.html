@@ -1,0 +1,31 @@
+{% load crispy_forms_filters %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %}    {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    {% block css %}    {% endblock %}
+</head>
+<body class="bg-light">
+    {% include "myapp/includes/navbar.html" %}
+    <div class="container bg-light ">
+        {% block content %}
+        {% endblock %}
+        <style>
+        .asteriskField{
+            color:red !important;
+        }
+        </style>
+    </div>
+    <script src="http://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {% include "myapp/includes/messages.html" %}
+    {% block js %}    {% endblock %}
+</body>
+</html>

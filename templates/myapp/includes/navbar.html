@@ -1,0 +1,69 @@
+{% load static %}
+<style>
+    .active{
+        color: blue !important;
+    }
+    .btn-remove-ng{
+        background:none !important;
+        outline:none !important;
+        border: none;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .btn-st{
+        background:none !important;
+        outline:none !important;
+        border: none;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .brand-color{
+        color: #322180 !important;
+        font-weight:bold !important;
+    }
+    .btn-hover:hover{
+        color: blue !important;
+    }
+</style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'myapp/img/bootstrap-solid.svg' %}" width="30" height="30" alt="">
+        <span class="{% if path == "/login/" %} active {% endif %} text-black-50 font-weight-bold pl-2 brand-color">Home</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active font-weight-bold">
+            <button class="{% if path == "/" %} active {% endif %} btn-hover font-weight-bold pt-2 btn-remove-ng" onclick="location.href='/'" >Home</button>
+          </li>
+            {% if not request.session.token %}
+          <li class="nav-item">
+            <button class=" {% if path == "/login/" %} active {% endif %} btn-hover font-weight-bold pt-2 btn-remove-ng" onclick="location.href='{% url "login" %}'" >Login</button>
+          </li>
+          <li class="nav-item">
+            <button class=" {% if path == "/signup/" %} active {% endif %} btn-hover font-weight-bold pt-2 btn-remove-ng" onclick="location.href='{% url "signup" %}'">Signup</button>
+          </li>
+          {% else %}
+              <li class="nav-item">
+                <button class="{% if path == "/uploader/" %} active {% endif %} btn-hover font-weight-bold pt-2 btn-remove-ng" onclick="location.href='{% url "uploader" %}'">Image Uploader</button>
+              </li>
+              <div class="nav-item dropdown settings_dpd">
+                    <button  class="text-success font-weight-bold pt-2 btn-hover btn-remove-ng" data-toggle="dropdown">{{ username }}</button>
+                    <div class="dpd-list dropdown-menu bg-light px-3 m-0">
+                        <img class="" alt="Username Image" src="{{user_image}}" height="50%" width="100%">
+                    </div>
+              </div>
+              <li class="nav-item">
+                <button class="font-weight-bold pt-2 btn-st text-danger " onclick="location.href='{% url "logout" %}'">Logout</button>
+              </li>
+          {% endif %}
+          <li class="nav-item">
+           <button class="{% if path == "/contact/" %} active {% endif %} btn-hover font-weight-bold pt-2 btn-remove-ng" onclick="location.href='{% url "contact" %}'">Contact Us</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>

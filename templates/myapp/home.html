@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+Home page
+{% endblock %}
+{% block content %}
+    <div class="jumbotron color-settings bg-light">
+        <div class="table-responsive p-5 border shadow-lg">
+            <h2 class="display-5 text-center pb-4">Content Us</h2>
+            <div class="table-responsive">
+            <table class="table border">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for d in data %}
+                    <tr>
+                        <td>{{ d.first_name }}</td>
+                        <td>{{ d.last_name }}</td>
+                        <td>{{ d.email }}</td>
+                        <td>{{ d.subject|slice:":20" }}...</td>
+                        <td class="row">
+                            <button type="button" onclick="location.href='{% url "contact-delete" d.id %}'" class="btn p-1 btn-light"><i class="text-danger fas fa-trash"></i></button>
+                            <button type="button" onclick="location.href='{% url "contact-edit" d.id %}'" class="btn p-1 btn-light"><i class="text-success fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+
